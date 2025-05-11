@@ -1,0 +1,247 @@
+html,
+body {
+    height: 100%;
+}
+
+#main-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #fff7f4;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+
+#content-container {
+    flex-grow: 1;
+    display: flex;
+    min-height: 0;
+}
+
+#description-container {
+    margin: 0;
+    height: 600px;
+    display: flex;
+    justify-content: center; /* horizontally center */
+    align-items: center;;   
+}
+
+#map_one_container {
+    flex-grow: 1;
+    width: 100%;
+    height: auto;
+}
+
+#map_one_frame {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.masthead {
+    width: 100%;
+    height: auto;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    flex-shrink: 4;
+    background-color: rgb(95,153,174);
+
+}
+
+h1 {
+    padding: 10px;
+    margin: 0px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+
+}
+
+
+.masthead_links {
+    
+    height: 3%;
+    align-items: center;
+    display: flex;
+    padding-left: 10px;
+    justify-content: right;
+    font-size: 12px;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
+
+}
+
+.masthead_links_cluster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    height: 100%;
+
+
+}
+
+.link {
+    display: flex;
+    border-left: 1px solid gray;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    align-items: center;
+
+}
+
+.buttons {
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    top: 10px;
+    left: 320px;
+    z-index: 900;
+    padding: 5px;
+    border-radius: 10px;
+    justify-content: space-between;
+    background-color: white;
+}
+h2 {
+    font-weight: 600;
+    color: rgb(95,153,174);
+    text-align: center;
+    margin: 10px; 
+    font-size: 18px;
+}
+
+#btn-loan-2018 {}
+
+#btn-loan-2018:hover {
+    text-decoration: underline;
+}
+
+#btn-loan-2018:active {}
+
+#btn-loan-2023 {}
+
+#btn-loan-2023:hover {
+    text-decoration: underline;
+
+}
+
+#btn-loan-2023:active {}
+
+#btn-delta-2018-2023 {}
+
+#btn-delta-2018-2023:hover {
+    text-decoration: underline;
+
+}
+
+#btn-delta-2018-2023:active {}
+
+
+
+#sidebar {
+    position: absolute;
+    color: black;
+    max-width: 300px;
+    height: 90%;
+    font-size: .8rem;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    justify-content: left;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    z-index: 999;
+    background-color: #fff7f4;
+    opacity: .80;
+    border-radius: 10px;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
+}
+
+#middlebar {
+    height: 90%;
+    width: 60%;
+    color: black;
+    font-size: .8rem;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    justify-content: left;
+    line-height: 1.6;
+    z-index: 999;
+    background-color: #fff7f4;
+    opacity: .80;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
+}
+
+.info-box {
+    position: absolute;
+    top: 80px;
+    left: 320px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+    max-width: 250px;
+    z-index: 999;
+    background-color: lightgrey;
+    opacity: .9;
+
+}
+
+.info-box.hidden {
+    display: none;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.info-box p {
+    margin: 4px 0;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.hidden {
+    display: none;
+}
+
+.short-break {
+    width: 88%;           /* Adjust to desired length (e.g., 200px or 50%) */
+    margin: 20px auto;    /* Center it horizontally */
+    border: none;
+    height: 1px;
+    background-color: gray;
+  }

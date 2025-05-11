@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>hdma nyc map</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <div id="main-container">
+        <div class="masthead">
+            <div>
+                <h1>Loan Values in New York City</h1>
+            </div>
+        </div>
+
+        <div class="masthead_links">
+            <div class="masthead_links_cluster">
+                <a href="index.html" class=link>Home</a>
+                <a href="data.html" class=link>Data</a>
+                <a href="methods.html" class=link>Methods</a>
+            </div>
+        </div>
+        <div id="content-container">
+
+
+            <div id="map_one_container">
+
+                <div id="map_one_frame">
+                    <div class="buttons">
+                        <h2>Map Options</h2>
+                        <button id="btn-loan-2018">2018</button>
+                        <button id="btn-loan-2023">2023</button>
+                        <button id="btn-delta-2018-2023">Change '18-'23</button>
+
+                    </div>
+                    <div id="sidebar">
+                        <p>
+                            <strong>This project leverages the Home Mortgage
+                                Disclosure Act (HMDA) dataset to visualize average home purchase loan values in New York
+                                City by census tract for 2018
+                                and 2023, and the percent change in average home purchase loan values between the two
+                                years.</strong>
+                            <br>
+                        <p><em>Click through <span style="color: rgb(95,153,174)">Map Options </span>or read below to
+                                explore the map</em></p>
+                        </p>
+
+
+                        <hr class="short-break">
+                        <p>
+                            Urban theorists and academics have shown the importance of understanding the movement of
+                            financial value in and around our cities. If there is too little value in a
+                            neighborhood, it suffers from disinvestment and marginalization
+                            <a href=https://www.urban.org/research/publication/catalytic-capital-neighborhood-reinvestment
+                                target="_blank" rel="noopener noreferrer">[1]</a>.
+
+                            On the other hand, too much financial value can destroy cohesive neghborhoods
+                            <a href=https://www.thenewlocalism.com/newsletter/on-jane-jacobs-and-opportunity-zones/
+                                target="_blank" rel="noopener noreferrer">[2],</a>
+                            accelerate displacement
+                            <a href=https://www.enterprisecommunity.org/learning-center/resources/gentrification-comparison-tool
+                                target="_blank" rel="noopener noreferrer">[3],</a>
+                            and exploit collective social resources
+                            <a href=https://davidharvey.org/media/public.pdf target="_blank"
+                                rel="noopener noreferrer">[4]</a>.
+                        </p>
+                        <p>
+                            Given these stakes, it is critical to develop ways to understand the movement of financial
+                            capital. Visualizing home purchase loan values are one way to do this. As measures of the
+                            debt that property owners are willing to take on to invest or live in a neighborhood, loan
+                            values are intuitive, loan values can show where value is pooling or draining.
+                        </p>
+                        <p> In <button id="btn-loan-2018">2018</button>, high loan value census tracts seem to
+                            be relatively dispersed across New York City. There is a cluster of high loan values areas
+                            around (go to) Crown Heights, Brooklyn.
+                        </p>
+
+                        <p> In <button id="btn-loan-2023">2023</button>, high loan values seem to migrate to Manhattan
+                            and the East River waterfront in Brooklyn. The (go to) Upper West Side stands out as a
+                            prominent cluster of high loan value areas.
+                        </p>
+                        <p> In <button id="btn-delta-2018-2023">Change</button>, the height of the blocks
+                            represent the difference between the two years in absolute value terms. A high block means
+                            that the average loan value in the census tract in 2023 was much higher than it was in 2018.
+                            This view of the data helps depict the sheer difference in loan values across
+                            New York City.
+                        </p>
+
+                    </div>
+                    <div class="info-box hidden" id="info-box">
+                        <button class="close-btn" id="close-btn">&times;</button>
+                        <p>Borough</p>
+                        <h3>
+                            <span id="boro-name"></span>
+                        </h3>
+                        <p>Neighborhood</p>
+                        <h3>
+                            <span id="neighborhood-name"></span>
+                        </h3>
+                        <p>Average Loan Value (2018)</p>
+                        <h3>
+                            <span id="avg-loan-2018">$MONEY</span>
+                        </h3>
+
+                        <p>Average Loan Value (2023)</p>
+                        <h3>
+                            <span id="avg-loan-2023">$MONEY</span>
+                        </h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js'></script>
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
