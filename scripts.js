@@ -208,7 +208,30 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
+
+	document.getElementById('text-btn-loan-2018').addEventListener('click', () => {
+		showLayer('layer_2018');
+		map_one_frame.easeTo({
+			pitch: 0,
+			center: [-74.17723, 40.70818],
+			bearing: 0,
+			duration: 1000,
+			easing: t => t
+		});
+	});
+	
 	document.getElementById('btn-loan-2023').addEventListener('click', () => {
+		showLayer('layer_2023');
+		map_one_frame.easeTo({
+			pitch: 0,
+			center: [-74.17723, 40.70818],
+			bearing: 0,
+			duration: 1000,
+			easing: t => t
+		});
+	});
+
+	document.getElementById('text-btn-loan-2023').addEventListener('click', () => {
 		showLayer('layer_2023');
 		map_one_frame.easeTo({
 			pitch: 0,
@@ -228,8 +251,18 @@ map_one_frame.on('load', () => {
 			duration: 1000,
 			easing: t => t
 		});
+	});
 
-	})
+	document.getElementById('text-btn-delta-2018-2023').addEventListener('click', () => {
+		showLayer('loan_value_difference_layer');
+		map_one_frame.easeTo({
+			pitch: 60,
+			bearing: 0,
+			center: [-74.17723, 40.70818],
+			duration: 1000,
+			easing: t => t
+		});
+	});
 })
 
 document.addEventListener('DOMContentLoaded', () => {
