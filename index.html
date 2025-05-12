@@ -32,9 +32,9 @@
                 <div id="map_one_frame">
                     <div class="buttons_panel">
                         <h2>Map Options</h2>
-                        <button class = "button" id="btn-loan-2018">2018</button>
-                        <button class = "button" id="btn-loan-2023">2023</button>
-                        <button class = "button" id="btn-delta-2018-2023">Change '18-'23</button>
+                        <button class="button" id="btn-loan-2018">2018</button>
+                        <button class="button" id="btn-loan-2023">2023</button>
+                        <button class="button" id="btn-delta-2018-2023">Change '18-'23</button>
 
                     </div>
                     <div id="sidebar">
@@ -44,7 +44,8 @@
                                 and 2023, and the change in average home purchase loan values between the two
                                 years.</strong> </div>
                         <p>
-                            <em>Click locations on the map and change views with <span style="color: rgb(95,153,174)">Map Options</span>, or read below, to
+                            <em>Click locations on the map and change views with <span
+                                    style="color: rgb(95,153,174)">Map Options</span>, or read below, to
                                 explore the map</em>
                         </p>
                         <hr class="short-break">
@@ -71,17 +72,20 @@
                             debt that property owners are willing to take on to invest or live in a neighborhood, loan
                             values can intuitively show where value is pooling or draining.
                         </p>
-                        <p> In the <button class= "text-btn" id="text-btn-loan-2018">2018</button> map, high loan value census tracts seem to
+                        <p> In the <button class="text-btn" id="text-btn-loan-2018">2018</button> map, high loan value
+                            census tracts seem to
                             be relatively dispersed across New York City. There is a cluster of high loan values areas
                             around (go to) Crown Heights, Brooklyn.
                         </p>
 
-                        <p> In the <button class= "text-btn" id="text-btn-loan-2023">2023</button> map, high loan values seem to migrate to
+                        <p> In the <button class="text-btn" id="text-btn-loan-2023">2023</button> map, high loan values
+                            seem to migrate to
                             Manhattan
                             and the East River waterfront in Brooklyn. The (go to) Upper West Side stands out as a
                             prominent cluster of high loan value areas.
                         </p>
-                        <p> In the <button class= "text-btn" id="text-btn-delta-2018-2023">Change '18-'23</button> map, the height of the blocks
+                        <p> In the <button class="text-btn" id="text-btn-delta-2018-2023">Change '18-'23</button> map,
+                            the height of the blocks
                             represent the difference between the two years in absolute value terms. A high block means
                             that the average loan value in the census tract in 2023 was much higher than it was in 2018.
                             This view of the data helps depict the sheer difference in loan values across
@@ -110,6 +114,31 @@
                         </h3>
 
                     </div>
+                    <div class="legend" id="legend-2018">
+                        <h3>2018 Loan Value Legend</h3>
+                        <!-- Gradient color bar -->
+                        <div class="color-bar" id="color-bar-2018"></div>
+
+                        <!-- Value labels -->
+                        <div class="labels" id="labels-2018">
+                            <span class="min-label">$5,000</span>
+                            <span class="max-label">$2,005,000</span>
+                        </div>
+                    </div>
+
+                    <div class="legend" id="legend-2023">
+                        <h3>2023 Loan Value Legend</h3>
+                        <!-- Gradient color bar -->
+                        <div class="color-bar" id="color-bar-2018"></div>
+
+                        <!-- Value labels -->
+                        <div class="labels" id="labels-2023">
+                            <span class="min-label">$5,000</span>
+                            <span class="max-label">$4,565,000</span>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
