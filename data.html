@@ -27,7 +27,30 @@
             <div id="description-container">
 
                 <div id="middlebar">
-                    <p>This part will describe data and methods.</p>
+                    <p>
+                        <p>
+                            <h3>Data and Methods</h3>
+                            <strong>A.</strong> I obtained the data for this project through the Federal Financial Institutions Examination Council's 
+                            <a href="https://ffiec.cfpb.gov/data-browser/data/2018?category=counties&items=36005,36061,36081,36047,36085&actions_taken=6&loan_purposes=1&getDetails=1">
+                              Home Mortgage Disclosure Act online database</a>. The following filters were used to retrieve data for 2018 and 2023:
+                          </p>
+                          
+                          <ul>
+                            <li><strong>Year:</strong> 2018 / 2023</li>
+                            <li><strong>County:</strong> Bronx County, NY; Kings County, NY; New York County, NY; Richmond County, NY; Queens County, NY</li>
+                            <li><strong>Action Taken:</strong> Purchased loan</li>
+                            <li><strong>Loan Purpose:</strong> Home purchase</li>
+                          </ul>
+                          
+                          <p><strong>B.</strong> I downloaded the 2018 and 2023 data, then cleaned and joined them using R.</p>
+                          
+                          <p><strong>C.</strong> I then used QGIS to match the HMDA data with NYC census tract shapefiles.</p>
+                          
+                          <p><strong>D.</strong> I uploaded the geocoded HMDA data as a GEOJSON into VSCode to create the webmap.</p>
+                          
+                          <p><strong>E.</strong> I derived the choropleth color scale for the 2018 and 2023 layers using the Natural Break scale in QGIS.</p>
+                          
+                    </p>
                 </div>
                 <script src='https://api.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js'></script>
                 <script src="scripts.js"></script>
