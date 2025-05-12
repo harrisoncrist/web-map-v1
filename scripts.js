@@ -6,8 +6,7 @@ const bounds = [
 	[-73.42330, 41.09414]
 ];
 
-// Create map_one_frame, which is an option bw 2018 and 2023 average loan values
-
+// Create map_one_frame, which will contain three layers: 2018, 2023, and the absolute value change between 2018 and 2023. 
 const map_one_frame = new mapboxgl.Map({
 	container: 'map_one_frame', // container ID
 	style: 'mapbox://styles/mapbox/light-v11', // dark style
@@ -17,30 +16,26 @@ const map_one_frame = new mapboxgl.Map({
 	maxBounds: bounds
 });
 
+// Create hover and active states to change the color of the map when hovered over or clicked
 let hoveredId = null;
 let activeId = null;
-//load the map
+//Load the map
 map_one_frame.on('load', () => {
-	//assign unique IDs to each feature
+	//Assign a unique ID to each feature in the geojson data so that it can be reference for hover and click events
 	fetch('./A_hdma_acs_18_23.geojson')
 		.then(response => response.json())
 		.then(data => {
-			// Assign unique IDs to each feature
 			data.features.forEach((feature, index) => {
 				feature.id = index
 			});
 
-			//add geojson source
+			//Add geojson source from HMDA data
 			map_one_frame.addSource('ct_boundaries', {
 				type: 'geojson',
 				data: data
 			});
 
-			//disable scroll zoom on map_one_frame
-			//map_one_frame.scrollZoom.disable();
-			//map_one_frame.addControl(new mapboxgl.FullscreenControl());
-
-			//add 2023 layer source
+			//Add 2023 layer source and turn it into a choropleth map
 			map_one_frame.addLayer({
 				id: 'layer_2023',
 				type: 'fill',
@@ -67,7 +62,7 @@ map_one_frame.on('load', () => {
 				}
 			});
 
-			//add 2018 layer 
+			//Add 2023 layer source and turn it into a choropleth map
 			map_one_frame.addLayer({
 				id: 'layer_2018',
 				type: 'fill',
@@ -92,20 +87,15 @@ map_one_frame.on('load', () => {
 						delay: 0
 					}
 				}
-				// ,
-				// layout: {
-				// 	visibility: 'none'
-				// }
 			});
 
-			//add delta layer
-			//map_one_frame.on('load', () => {
-			//modify geojson to add difference in loan value property
+			//Add the delta layer and extrude the differences in loan value between 2018 and 2023
+			//First create the new field, which is the difference between the two years
 			fetch('./A_hdma_acs_18_23.geojson')
 				.then(response => response.json())
 				.then(modified_hdma_data => {
 					modified_hdma_data.features.forEach((feature, index) => {
-						feature.id = index; // Assign a unique ID to each feature
+						feature.id = index;
 						const avgLoan2018 = feature.properties.B_download_acs_hdma_2018_2023_average_loan_2018;
 						const avgLoan2023 = feature.properties.B_download_acs_hdma_2018_2023_average_loan_2023;
 						// Check if both properties exist before calculating the difference
@@ -119,21 +109,21 @@ map_one_frame.on('load', () => {
 						}
 					});
 
-					//add the layer as a source to map_one_frame
+					//Add the layer as a source to map_one_frame
 					map_one_frame.addSource('loan_value_difference_source', {
 						type: 'geojson',
 						data: modified_hdma_data
 					});
 
 
-					//add extruded layer 
+					//Add extruded layer 
 					map_one_frame.addLayer({
 						id: 'loan_value_difference_layer',
 						type: 'fill-extrusion',
 						source: 'loan_value_difference_source',
 						filter: ['has', 'difference'],
 						paint: {
-							'fill-extrusion-height': ['*', ['get', 'difference'], .005], // scaled height
+							'fill-extrusion-height': ['*', ['get', 'difference'], .005], // scaled the height down
 							'fill-extrusion-base': 0,
 							'fill-extrusion-color': [
 								'case',
@@ -148,7 +138,6 @@ map_one_frame.on('load', () => {
 								delay: 0
 							}
 						}
-						// layout: { visibility: 'none' }
 					});
 					setupInteractivity('layer_2023');
 					setupInteractivity('layer_2018');
@@ -157,7 +146,7 @@ map_one_frame.on('load', () => {
 		});
 
 
-
+	//Make the transition between the layers smooth by changing the opacity of the layers
 	function showLayer(layer_to_show) {
 		const layers = ['layer_2023', 'layer_2018', 'loan_value_difference_layer'];
 		layers.forEach(layer => {
@@ -169,7 +158,7 @@ map_one_frame.on('load', () => {
 			}
 		});
 	}
-
+	//Use this event to change the color of the layer when the mouse hovers over one of its features
 	function setupInteractivity(layerId, sourceId = 'ct_boundaries') {
 		map_one_frame.on('mousemove', layerId, (e) => {
 			if (e.features.length > 0) {
@@ -181,14 +170,14 @@ map_one_frame.on('load', () => {
 				map_one_frame.setFeatureState({ source: sourceId, id: hoveredId }, { hover: true });
 			}
 		});
-
+		//Use this event to change the color of the layer back to the original when the mouse leaves one of its features
 		map_one_frame.on('mouseleave', layerId, () => {
 			if (hoveredId !== null) {
 				map_one_frame.setFeatureState({ source: sourceId, id: hoveredId }, { hover: false });
 				hoveredId = null;
 			}
 		});
-
+		//Use this event to change the color of the layer when the mouse clicks one of its features
 		map_one_frame.on('click', layerId, (e) => {
 			if (activeId !== null) {
 				map_one_frame.setFeatureState({ source: sourceId, id: activeId }, { active: false });
@@ -197,7 +186,7 @@ map_one_frame.on('load', () => {
 			map_one_frame.setFeatureState({ source: sourceId, id: activeId }, { active: true });
 		});
 	}
-
+	//Create the 2018 layer view when the 2018 button is clicked
 	document.getElementById('btn-loan-2018').addEventListener('click', () => {
 		showLayer('layer_2018');
 		map_one_frame.easeTo({
@@ -208,6 +197,7 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
+	//Create the 2018 layer view when the 2018 button is clicked in the text
 
 	document.getElementById('text-btn-loan-2018').addEventListener('click', () => {
 		showLayer('layer_2018');
@@ -219,7 +209,8 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
-	
+	//Create the 2018 layer view when the 2023 button is clicked 
+
 	document.getElementById('btn-loan-2023').addEventListener('click', () => {
 		showLayer('layer_2023');
 		map_one_frame.easeTo({
@@ -230,6 +221,7 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
+	//Create the 2018 layer view when the 2023 button is clicked in the text
 
 	document.getElementById('text-btn-loan-2023').addEventListener('click', () => {
 		showLayer('layer_2023');
@@ -241,6 +233,7 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
+	//Create the delta layer view when the change button is clicked
 
 	document.getElementById('btn-delta-2018-2023').addEventListener('click', () => {
 		showLayer('loan_value_difference_layer');
@@ -252,6 +245,7 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
+	//Create the delta layer view when the change button is clicked in the text
 
 	document.getElementById('text-btn-delta-2018-2023').addEventListener('click', () => {
 		showLayer('loan_value_difference_layer');
@@ -263,8 +257,24 @@ map_one_frame.on('load', () => {
 			easing: t => t
 		});
 	});
-})
 
+	// Get all elements with the button class
+	const buttons = document.querySelectorAll('.button');
+
+	// Add click event listener to each button
+	buttons.forEach(button => {
+		button.addEventListener('click', function () {
+			// First, remove active class from all buttons
+			buttons.forEach(btn => {
+				btn.classList.remove('active');
+			});
+
+			// Then add active class only to the clicked button
+			this.classList.add('active');
+		});
+	});
+})
+//Pop up the info box when a feature is clicked
 document.addEventListener('DOMContentLoaded', () => {
 	const closeBtn = document.getElementById('close-btn');
 	if (closeBtn) {
@@ -272,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.getElementById('info-box').classList.add('hidden');
 		});
 	}
+	//Pull data into the info box when a feature is clicked
 
 	map_one_frame.on('click', ['layer_2023', 'layer_2018', 'loan_value_difference_layer'], (e) => {
 		const features = map_one_frame.queryRenderedFeatures(e.point, {
@@ -295,7 +306,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	});
-	//Create a histogram legend
-
 
 });

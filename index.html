@@ -21,8 +21,7 @@
         <div class="masthead_links">
             <div class="masthead_links_cluster">
                 <a href="index.html" class=link>Home</a>
-                <a href="data.html" class=link>Data</a>
-                <a href="methods.html" class=link>Methods</a>
+                <a href="data.html" class=link>Data and Methods</a>
             </div>
         </div>
         <div id="content-container">
@@ -31,30 +30,27 @@
             <div id="map_one_container">
 
                 <div id="map_one_frame">
-                    <div class="buttons">
+                    <div class="buttons_panel">
                         <h2>Map Options</h2>
-                        <button id="btn-loan-2018">2018</button>
-                        <button id="btn-loan-2023">2023</button>
-                        <button id="btn-delta-2018-2023">Change '18-'23</button>
+                        <button class = "button" id="btn-loan-2018">2018</button>
+                        <button class = "button" id="btn-loan-2023">2023</button>
+                        <button class = "button" id="btn-delta-2018-2023">Change '18-'23</button>
 
                     </div>
                     <div id="sidebar">
-                        <p>
-                            <strong>This project leverages the Home Mortgage
+                        <div id="intro-text"><strong>This project leverages the Home Mortgage
                                 Disclosure Act (HMDA) dataset to visualize average home purchase loan values in New York
                                 City by census tract for 2018
-                                and 2023, and the percent change in average home purchase loan values between the two
-                                years.</strong>
-                            <br>
-                        <p><em>Click through <span style="color: rgb(95,153,174)">Map Options </span>or read below to
-                                explore the map</em></p>
+                                and 2023, and the change in average home purchase loan values between the two
+                                years.</strong> </div>
+                        <p>
+                            <em>Click locations on the map and change views with <span style="color: rgb(95,153,174)">Map Options</span>, or read below, to
+                                explore the map</em>
                         </p>
-
-
                         <hr class="short-break">
                         <p>
                             Urban theorists and academics have shown the importance of understanding the movement of
-                            financial value in and around our cities. If there is too little value in a
+                            financial value in and around cities. If there is too little value in a
                             neighborhood, it suffers from disinvestment and marginalization
                             <a href=https://www.urban.org/research/publication/catalytic-capital-neighborhood-reinvestment
                                 target="_blank" rel="noopener noreferrer">[1]</a>.
@@ -75,16 +71,17 @@
                             debt that property owners are willing to take on to invest or live in a neighborhood, loan
                             values are intuitive, loan values can show where value is pooling or draining.
                         </p>
-                        <p> In <button id="text-btn-loan-2018">2018</button>, high loan value census tracts seem to
+                        <p> In the <button class= "text-btn" id="text-btn-loan-2018">2018</button> map, high loan value census tracts seem to
                             be relatively dispersed across New York City. There is a cluster of high loan values areas
                             around (go to) Crown Heights, Brooklyn.
                         </p>
 
-                        <p> In <button id="text-btn-loan-2023">2023</button>, high loan values seem to migrate to Manhattan
+                        <p> In the <button class= "text-btn" id="text-btn-loan-2023">2023</button> map, high loan values seem to migrate to
+                            Manhattan
                             and the East River waterfront in Brooklyn. The (go to) Upper West Side stands out as a
                             prominent cluster of high loan value areas.
                         </p>
-                        <p> In <button id="text-btn-delta-2018-2023">Change</button>, the height of the blocks
+                        <p> In the <button class= "text-btn" id="text-btn-delta-2018-2023">Change '18-'23</button> map, the height of the blocks
                             represent the difference between the two years in absolute value terms. A high block means
                             that the average loan value in the census tract in 2023 was much higher than it was in 2018.
                             This view of the data helps depict the sheer difference in loan values across
